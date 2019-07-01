@@ -1,0 +1,10 @@
+.settings/
+Backup/
+BetaDigger/
+Cache/
+*.wrx
+*.r
+*.pref
+protrace*
+.project
+.propath
