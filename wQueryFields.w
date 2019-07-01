@@ -635,12 +635,12 @@ PROCEDURE ScreenInit :
     giLightGray = getLightGray().
 
     /* Load images */
-    btnSelect  :LOAD-IMAGE('..\Image\right.gif').
-    btnDeselect:LOAD-IMAGE('..\Image\left.gif').
-    btnTop     :LOAD-IMAGE('..\Image\top.gif').
-    btnUp      :LOAD-IMAGE('..\Image\up.gif').
-    btnDown    :LOAD-IMAGE('..\Image\down.gif').
-    btnBottom  :LOAD-IMAGE('..\Image\bottom.gif').
+    btnSelect  :LOAD-IMAGE('Image\right.gif').
+    btnDeselect:LOAD-IMAGE('Image\left.gif').
+    btnTop     :LOAD-IMAGE('Image\top.gif').
+    btnUp      :LOAD-IMAGE('Image\up.gif').
+    btnDown    :LOAD-IMAGE('Image\down.gif').
+    btnBottom  :LOAD-IMAGE('Image\bottom.gif').
 
   END.
   
@@ -889,4 +889,3 @@ END PROCEDURE. /* selectField */
 
 /* _UIB-CODE-BLOCK-END */
 &ANALYZE-RESUME
-

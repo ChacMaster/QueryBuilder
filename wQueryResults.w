@@ -1294,7 +1294,7 @@ PROCEDURE ScreenInit :
   DEFINE INPUT-OUTPUT PARAMETER DATASET FOR dsQuery BIND.
   
   DO WITH FRAME {&frame-name}:
-    btnClearDataFilter:LOAD-IMAGE('..\image\clear.gif').
+    btnClearDataFilter:LOAD-IMAGE('image\clear.gif').
   END.
   
 END PROCEDURE. /* ScreenInit */
@@ -1637,4 +1637,3 @@ END FUNCTION. /* setFilterFieldColor */
 
 /* _UIB-CODE-BLOCK-END */
 &ANALYZE-RESUME
-
