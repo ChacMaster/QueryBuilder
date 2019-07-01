@@ -1,0 +1,5 @@
+local-default
+customer.comments
+customer.fax
+customer.city
+
