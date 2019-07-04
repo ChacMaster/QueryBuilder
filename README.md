@@ -1,13 +1,12 @@
 # QueryBuilder
 Query Builder and Viewer for Progress databases. 
 
-## Getting started
-### Quick install
+## Install QueryBuilder
 - Create a folder 'QueryBuilder' and extract all files in it
 - Open a Proenv session in 'QueryBuilder\bin'
 - Run the command file 'create_db.cmd' and close the Proenv session
 
-### Run QueryBuilder
+## Run QueryBuilder
 You can either start QueryBuilder by double clicking 'QueryBuilder\QueryBuilder.pf' or by opening a Progress GUI Procedure Editor window, connect to the QueryBuilder database, add the QueryBuilder folder to the propath and then execute:
 ```
 RUN wMyQueries.w 
@@ -15,7 +14,7 @@ RUN wMyQueries.w
 
 This will start the main window:
 
-![](docs\MyQueries.png)
+![](https://i.imgur.com/z2EpMQN.png)
 
 
 ## Database info
