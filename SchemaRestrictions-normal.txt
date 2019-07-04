@@ -1,7 +1,9 @@
+benefits
+employee
+family.CoveredOnBenefits
+family.BenefitDate
 local-default
-customer.comments
 customer.fax
-customer.city
 qbQuery
 qbTable
 qbField

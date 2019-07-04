@@ -49,7 +49,7 @@ DEFINE VARIABLE giLockCounter   AS INTEGER NO-UNDO.
 &Scoped-define FRAME-NAME DEFAULT-FRAME
 
 /* Standard List Definitions                                            */
-&Scoped-Define ENABLED-OBJECTS btnResults rcScreen btnCancel btnFinish ~
+&Scoped-Define ENABLED-OBJECTS btnPreview rcScreen btnCancel btnFinish ~
 btnNext btnPrev btnProperties btnTables btnConditions btnFields ~
 btnRelations 
 
@@ -100,6 +100,10 @@ DEFINE BUTTON btnPrev  NO-FOCUS
      LABEL "<<  &Back" 
      SIZE 22 BY 1.14.
 
+DEFINE BUTTON btnPreview  NO-FOCUS
+     LABEL "&Preview" 
+     SIZE 22 BY 1.43 TOOLTIP "outcome of your query".
+
 DEFINE BUTTON btnProperties  NO-FOCUS
      LABEL "&Properties" 
      SIZE 22 BY 1.43 TOOLTIP "general properties of the query".
@@ -107,10 +111,6 @@ DEFINE BUTTON btnProperties  NO-FOCUS
 DEFINE BUTTON btnRelations  NO-FOCUS
      LABEL "&Relations" 
      SIZE 22 BY 1.43 TOOLTIP "define how the tables relate to each other".
-
-DEFINE BUTTON btnResults  NO-FOCUS
-     LABEL "&Results" 
-     SIZE 22 BY 1.43 TOOLTIP "outcome of your query".
 
 DEFINE BUTTON btnTables  NO-FOCUS
      LABEL "&Tables" 
@@ -124,7 +124,7 @@ DEFINE RECTANGLE rcScreen
 /* ************************  Frame Definitions  *********************** */
 
 DEFINE FRAME DEFAULT-FRAME
-     btnResults AT ROW 1.48 COL 112 WIDGET-ID 38
+     btnPreview AT ROW 1.48 COL 112 WIDGET-ID 38
      btnCancel AT ROW 18.81 COL 112 WIDGET-ID 40
      btnFinish AT ROW 18.81 COL 181 WIDGET-ID 42
      btnNext AT ROW 18.81 COL 158 WIDGET-ID 32
@@ -188,7 +188,7 @@ ELSE {&WINDOW-NAME} = CURRENT-WINDOW.
 /* SETTINGS FOR FRAME DEFAULT-FRAME
    FRAME-NAME                                                           */
 IF SESSION:DISPLAY-TYPE = "GUI":U AND VALID-HANDLE(C-Win)
-THEN C-Win:HIDDEN = no.
+THEN C-Win:HIDDEN = yes.
 
 /* _RUN-TIME-ATTRIBUTES-END */
 &ANALYZE-RESUME
@@ -321,6 +321,17 @@ END.
 &ANALYZE-RESUME
 
 
+&Scoped-define SELF-NAME btnPreview
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _CONTROL btnPreview C-Win
+ON CHOOSE OF btnPreview IN FRAME DEFAULT-FRAME /* Preview */
+DO:
+  RUN showScreen(6).
+END.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+
 &Scoped-define SELF-NAME btnProperties
 &ANALYZE-SUSPEND _UIB-CODE-BLOCK _CONTROL btnProperties C-Win
 ON CHOOSE OF btnProperties IN FRAME DEFAULT-FRAME /* Properties */
@@ -337,17 +348,6 @@ END.
 ON CHOOSE OF btnRelations IN FRAME DEFAULT-FRAME /* Relations */
 DO:
   RUN showScreen(3).
-END.
-
-/* _UIB-CODE-BLOCK-END */
-&ANALYZE-RESUME
-
-
-&Scoped-define SELF-NAME btnResults
-&ANALYZE-SUSPEND _UIB-CODE-BLOCK _CONTROL btnResults C-Win
-ON CHOOSE OF btnResults IN FRAME DEFAULT-FRAME /* Results */
-DO:
-  RUN showScreen(6).
 END.
 
 /* _UIB-CODE-BLOCK-END */
@@ -476,7 +476,7 @@ PROCEDURE enable_UI :
                These statements here are based on the "Other 
                Settings" section of the widget Property Sheets.
 ------------------------------------------------------------------------------*/
-  ENABLE btnResults rcScreen btnCancel btnFinish btnNext btnPrev btnProperties 
+  ENABLE btnPreview rcScreen btnCancel btnFinish btnNext btnPrev btnProperties 
          btnTables btnConditions btnFields btnRelations 
       WITH FRAME DEFAULT-FRAME IN WINDOW C-Win.
   {&OPEN-BROWSERS-IN-QUERY-DEFAULT-FRAME}
@@ -504,14 +504,14 @@ PROCEDURE initObject :
     DO:
       RUN startScreen(4, btnConditions:HANDLE , 'wQueryConditions.w').
       RUN startScreen(5, btnFields:HANDLE     , 'wQueryFields.w').
-      RUN startScreen(6, btnResults:HANDLE    , 'wQueryResults.w').
+      RUN startScreen(6, btnPreview:HANDLE    , 'wQueryResults.w').
 
       /* Hide non-admin buttons and move other buttons to the left */
       HIDE btnProperties btnTables btnRelations.
       ASSIGN 
         btnConditions:X = btnProperties:X
         btnFields:X     = btnTables:X
-        btnResults:X    = btnRelations:X.      
+        btnPreview:X    = btnRelations:X.      
         
       RUN showScreen(4).
     END.
@@ -523,7 +523,7 @@ PROCEDURE initObject :
       RUN startScreen(3, btnRelations:HANDLE  , 'wQueryRelations.w').
       RUN startScreen(4, btnConditions:HANDLE , 'wQueryConditions.w').
       RUN startScreen(5, btnFields:HANDLE     , 'wQueryFields.w').
-      RUN startScreen(6, btnResults:HANDLE    , 'wQueryResults.w').
+      RUN startScreen(6, btnPreview:HANDLE    , 'wQueryResults.w').
       
       RUN showScreen(1).
     END.  

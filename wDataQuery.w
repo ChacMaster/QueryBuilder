@@ -17,7 +17,7 @@ CREATE WIDGET-POOL.
 
 /* Parameters Definitions ---                                           */
 &IF DEFINED(UIB_IS_RUNNING) = 0 &THEN
-  DEFINE OUTPUT PARAMETER piQueryNr AS INTEGER NO-UNDO.  
+  DEFINE INPUT PARAMETER piQueryNr AS INTEGER NO-UNDO.
 &ELSE
   DEFINE VARIABLE piQueryNr AS INTEGER NO-UNDO INITIAL 2.
 &ENDIF
@@ -752,4 +752,3 @@ END FUNCTION. /* getEscapedData */
 
 /* _UIB-CODE-BLOCK-END */
 &ANALYZE-RESUME
-

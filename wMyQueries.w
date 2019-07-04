@@ -6,38 +6,18 @@
 &Scoped-define WINDOW-NAME C-Win
 &ANALYZE-SUSPEND _UIB-CODE-BLOCK _CUSTOM _DEFINITIONS C-Win 
 /*------------------------------------------------------------------------
+    File        : wMyQueries.w
+    Purpose     : Overview of queries of the current user.
+                  Starting point for QueryBuilder
 
-  File: 
+    Author(s)   : Patrick Tingen
+    Created     : 2019
 
-  Description: 
-
-  Input Parameters:
-      <none>
-
-  Output Parameters:
-      <none>
-
-  Author: 
-
-  Created: 
-
-------------------------------------------------------------------------*/
+  ----------------------------------------------------------------------*/
 /*          This .W file was created with the Progress AppBuilder.      */
 /*----------------------------------------------------------------------*/
 
-/* Create an unnamed pool to store all the widgets created 
-     by this procedure. This is a good default which assures
-     that this procedure's triggers and internal procedures 
-     will execute in this procedure's storage, and that proper
-     cleanup will occur on deletion of the procedure. */
-
 CREATE WIDGET-POOL.
-
-/* ***************************  Definitions  ************************** */
-
-/* Parameters Definitions ---                                           */
-
-/* Local Variable Definitions ---                                       */
 
 { queryLib.i }
 
@@ -373,7 +353,7 @@ ON CHOOSE OF btnRun IN FRAME DEFAULT-FRAME /* Run */
 DO:
 
   {&WINDOW-NAME}:SENSITIVE = FALSE.  
-  RUN wShowQuery.w(INPUT qbQuery.queryNr).
+  RUN wDataQuery.w(INPUT qbQuery.queryNr).
   {&WINDOW-NAME}:SENSITIVE = TRUE.
   
 END.
@@ -479,8 +459,9 @@ PROCEDURE initObject :
 */
   DO WITH FRAME {&Frame-name}:
   
+    APPLY 'value-changed' TO rsUserType.
     APPLY 'value-changed' TO brQueries.
-    
+
   END.
 
 END PROCEDURE. /* initObject */

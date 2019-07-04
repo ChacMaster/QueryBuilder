@@ -20,7 +20,7 @@ END PROCEDURE.
 
 /* Placeholder solution for user type, should be implemented in 
 ** host application */
-DEFINE VARIABLE gcUserType AS CHARACTER NO-UNDO INITIAL 'admin'.
+DEFINE VARIABLE gcUserType AS CHARACTER NO-UNDO INITIAL 'normal'.
 
 
 PROCEDURE createQuery:
@@ -473,11 +473,12 @@ FUNCTION isQueryChanged RETURNS LOGICAL
   DEFINE BUFFER bQuery FOR qbQuery.
   DEFINE BUFFER bTable FOR qbTable.
   DEFINE BUFFER bField FOR qbField.
-
+  
   /* Query itself */
   FIND ttQuery.
   FIND bQuery NO-LOCK WHERE bQuery.queryNr = ttQuery.QueryNr NO-ERROR.
   IF NOT AVAILABLE bQuery THEN RETURN YES.  
+  
   BUFFER-COMPARE bQuery TO ttQuery SAVE RESULT IN lTheSame.
   IF NOT lTheSame THEN RETURN YES. 
 
