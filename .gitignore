@@ -2,7 +2,6 @@
 .propath
 .settings/
 db/
-*.wrx
 *.r
 *.pref
 protrace*
